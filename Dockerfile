@@ -7,9 +7,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends tini
 
 RUN pwd
-RUN chmod -R g+rw docker/
+RUN ls -a
+#RUN chmod -R g+rw docker/
 
 WORKDIR /app
+RUN ls -a
 
 VOLUME ["/app"]
 ENTRYPOINT ["/usr/bin/tini", "-v", "--"]
