@@ -33,4 +33,6 @@ ENV REACT_APP_DEFAULT_AUTO_REFRESH_INTERVAL=30
 ENV REACT_APP_REALTIME_SERVICE_MAX_RETRIES=5
 
 ENTRYPOINT ["/sbin/tini", "-v", "--"]
-CMD ["/docker-entrypoint.sh"]
+RUN env
+RUN npm install
+CMD ["npm", "run-script", "dockerstart"]
