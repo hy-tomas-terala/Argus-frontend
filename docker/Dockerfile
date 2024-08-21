@@ -16,6 +16,8 @@ RUN npm run build
 # FROM: https://mherman.org/blog/dockerizing-a-react-app/
 FROM nginx:stable-alpine
 
+RUN mkdir /usr/share/nginx
+RUN ls -la
 COPY --from=build /app/build /usr/share/nginx/html
 
 RUN apk add --update tini tree
