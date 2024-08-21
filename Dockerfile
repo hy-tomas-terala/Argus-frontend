@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends tini
 
 WORKDIR /app
 
-RUN chmod -R g+rw docker
+RUN pwd
+RUN chmod -R g+rw docker/
 
 VOLUME ["/app"]
 ENTRYPOINT ["/usr/bin/tini", "-v", "--"]
