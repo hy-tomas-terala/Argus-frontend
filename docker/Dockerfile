@@ -14,13 +14,20 @@ RUN npm run build
 # production environment consisting only of nginx and the statically compiled
 # Argus Frontend application files produced by the build stage
 # FROM: https://mherman.org/blog/dockerizing-a-react-app/
-FROM nginx:stable-alpine
 
+# run unprivileged nginx
+FROM nginxinc/nginx-unprivileged:stable
+
+# copy files from build to nginx
 COPY --from=build /app/build /usr/share/nginx/html
 
 RUN apk add --update tini tree
+
+# Remove default configuration file
+RUN rm -rf /etc/nginx/conf.d
+COPY docker/conf /etc/nginx/conf.d
+
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY docker/docker-entrypoint.sh /
 COPY docker/runtime-config-template.json /
 
 ENV REACT_APP_BACKEND_URL=http://fake
