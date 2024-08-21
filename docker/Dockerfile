@@ -15,13 +15,13 @@ RUN npm run build
 # Argus Frontend application files produced by the build stage
 # FROM: https://mherman.org/blog/dockerizing-a-react-app/
 
+#RUN apk add --update tini tree
+
 # run unprivileged nginx
 FROM nginxinc/nginx-unprivileged:stable
 
 # copy files from build to nginx
 COPY --from=build /app/build /usr/share/nginx/html
-
-RUN apk add --update tini tree
 
 # Remove default configuration file
 RUN rm -rf /etc/nginx/conf.d
