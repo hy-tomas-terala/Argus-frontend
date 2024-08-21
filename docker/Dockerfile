@@ -39,6 +39,6 @@ ENV REACT_APP_DEBUG=false
 ENV REACT_APP_DEFAULT_AUTO_REFRESH_INTERVAL=30
 ENV REACT_APP_REALTIME_SERVICE_MAX_RETRIES=5
 
-ENTRYPOINT ["/sbin/tini", "-v", "--"]
+#ENTRYPOINT ["/sbin/tini", "-v", "--"]
 ENV runtime-config-template.json=/usr/share/nginx/html/runtime-config.json
 CMD ["nginx", "-g", "daemon off;"]
