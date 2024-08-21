@@ -33,6 +33,5 @@ ENV REACT_APP_DEFAULT_AUTO_REFRESH_INTERVAL=30
 ENV REACT_APP_REALTIME_SERVICE_MAX_RETRIES=5
 
 ENTRYPOINT ["/sbin/tini", "-v", "--"]
-RUN env
-RUN npm install
-CMD ["npm", "run-script", "dockerstart"]
+ENV runtime-config-template.json=/usr/share/nginx/html/runtime-config.json
+CMD ["nginx", "-g", "daemon off;"]
